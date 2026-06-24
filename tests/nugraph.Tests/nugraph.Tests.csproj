@@ -23,9 +23,9 @@
 
   <ItemGroup>
     <PackageReference Include="AwesomeAssertions" Version="9.4.0" />
-    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" Version="2.2.2" />
-    <PackageReference Include="Spectre.Console.Testing" Version="0.55.2" />
-    <PackageReference Include="TUnit.Engine" Version="1.44.0" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport" Version="2.2.3" />
+    <PackageReference Include="Spectre.Console.Testing" Version="0.57.1" />
+    <PackageReference Include="TUnit.Engine" Version="1.56.35" />
   </ItemGroup>
 
   <ItemGroup>
