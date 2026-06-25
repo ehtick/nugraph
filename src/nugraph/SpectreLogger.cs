@@ -32,7 +32,7 @@ internal sealed class SpectreLogger(IAnsiConsole console, LogLevel minimumLevel)
             LogLevel.Minimal => Color.Black,
             LogLevel.Warning => Color.Orange1,
             LogLevel.Error => Color.Red,
-            _ => throw new ArgumentOutOfRangeException(nameof(level), level, $"The value of argument '{nameof(level)}' ({level}) is invalid for enum type '{nameof(LogLevel)}'.")
+            _ => throw new ArgumentOutOfRangeException(nameof(level), level, $"The value of argument '{nameof(level)}' ({level}) is invalid for enum type '{nameof(LogLevel)}'."),
         };
     }
 }

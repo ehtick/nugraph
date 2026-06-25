@@ -57,7 +57,7 @@ public sealed class TemporaryProject : IDisposable
 
     public static async Task<TemporaryProject> CreateAsync(PackageIdentity package, NuGetFramework? targetFramework, DirectoryInfo? sdk, ISettings nugetSettings, ILogger logger, CancellationToken cancellationToken)
     {
-        ArgumentNullException.ThrowIfNull(logger, nameof(logger));
+        ArgumentNullException.ThrowIfNull(logger);
 
         var (identity, resolvedTargetFramework) = await ResolveAsync(package, targetFramework, sdk, nugetSettings, logger, cancellationToken);
         return new TemporaryProject(identity, resolvedTargetFramework);
@@ -93,12 +93,7 @@ public sealed class TemporaryProject : IDisposable
         }
 
         var targetFramework = targetFrameworks.Order(NuGetFrameworkVersionComparer.Instance).FirstOrDefault();
-        if (targetFramework != null)
-        {
-            return (identity, targetFramework);
-        }
-
-        return (identity, NetStandard10);
+        return (identity, targetFramework ?? NetStandard10);
     }
 
     private static List<PackageSource> GetPackageSources(ISettings settings, ILogger logger)

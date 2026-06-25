@@ -11,7 +11,7 @@ public record ProgramEnvironment(DirectoryInfo CurrentWorkingDirectory, IAnsiCon
 
 public class Program(ProgramEnvironment environment)
 {
-    public Program() : this(new ProgramEnvironment(new DirectoryInfo(Environment.CurrentDirectory), RedirectionFriendlyConsole.Out, RedirectionFriendlyConsole.Error, Console.Out))
+    private Program() : this(new ProgramEnvironment(new DirectoryInfo(Environment.CurrentDirectory), RedirectionFriendlyConsole.Out, RedirectionFriendlyConsole.Error, Console.Out))
     {
     }
 
