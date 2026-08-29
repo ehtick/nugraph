@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,8 +30,16 @@ public class Program(ProgramEnvironment environment)
         // ReSharper disable AccessToDisposedClosure
         Console.CancelKeyPress += (_, eventArgs) =>
         {
-            // Try to cancel gracefully the first time, then abort the process the second time Ctrl+C is pressed
-            eventArgs.Cancel = !cancellationTokenSource.IsCancellationRequested;
+            if (cancellationTokenSource.IsCancellationRequested)
+            {
+                // Ctrl+C was pressed twice => graceful termination did not work, make sure to restore the cursor
+                environment.ConsoleOut.Cursor.Show();
+            }
+            else
+            {
+                // Ctrl+C was pressed for the first time => try graceful termination first
+                eventArgs.Cancel = true;
+            }
             cancellationTokenSource.Cancel();
         };
 
